@@ -35,38 +35,45 @@ module.exports = {
         {
             id: 1,
             customerID: 1,
-            startDateTime: "",
+            startDateTime: 1731249100000,
             endDateTime: null,
             vehicleID: "",
             ended: true,
-            paid: false,
+        },
+        {
+            id: 2,
+            customerID: 2,
+            startDateTime: 1731249100000,
+            endDateTime: 1731340800000,
+            vehicleID: "",
+            ended: true,
         },
     ],
     // Explain what function A does
-    addCar(d) {
-        this.vehicles.push({make, model, seats, cap});
+    addCar(make, model, seats, cap) {
+        const id = Math.max(...vehicles.map(vehicle => vehicle.id)) + 1;
+        this.vehicles.push({id, make, model, seats, cap});
     },
     // Explain what function B does
-    register(d) {
-
-        this.user.push({name, age, phone});
+    register(name, age, phone) {
+        const id = Math.max(...user.map(u => u.id)) + 1;
+        this.user.push({id, name, age, phone});
     },
-    bookCar(d) {
+    rentCar(d) {
         var bookdate = Date.now();
         this.rental.push({customerID, bookdate, endDate, estPrice, paid});
     },
     endRental(i) {
-        const rate = 8;
+        const rate = 10;
         var enddate = Date.now();
         var reservation = this.rental.find(r => r.id == Number(i));
         var fees;
         if(reservation.endDateTime == null) {
-            fees = ((reservation.startDateTime - enddate) / (1000 * 60 * 60)) * rate; // find out the hours rented by the user and calculate the fees
+            fees = Math.round(((enddate - reservation.startDateTime) / (3600000)) * rate * 100) / 100;  // find out the hours rented by the user and calculate the fees
         } else {
-            fees = (reservation.startDateTime - reservation.endDateTime) / (1000 * 60 * 60) * rate;
+            fees = (reservation.startDateTime - reservation.endDateTime) / (1000 * 60 * 60) * rate;  // if the user has stated their end perios before, calculate directly
         }
         //''this.rental.splice(reservation, 1);
-
         return `Rental ended. Outstanding fees: ${fees}`;
     },
     getCustomerDetails(i) {
@@ -77,5 +84,8 @@ module.exports = {
     },
     getReservationDetails(i) {
         return this.rental.find(r => r.id === i);
+    },
+    searchCar(detail) {
+        
     }
 }
