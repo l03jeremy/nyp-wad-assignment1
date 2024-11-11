@@ -38,7 +38,7 @@ module.exports = {
             startDateTime: "",
             endDateTime: null,
             vehicleID: "",
-            estPrice: "",
+            ended: true,
             paid: false,
         },
     ],
@@ -47,9 +47,9 @@ module.exports = {
         this.vehicles.push({make, model, seats, cap});
     },
     // Explain what function B does
-    addCustomer(d) {
+    register(d) {
 
-        this.customer.push({name, age, phone});
+        this.user.push({name, age, phone});
     },
     bookCar(d) {
         var bookdate = Date.now();
@@ -59,7 +59,13 @@ module.exports = {
         const rate = 8;
         var enddate = Date.now();
         var reservation = this.rental.find(r => r.id == Number(i));
-        var fees = ((reservation.startDateTime - enddate)/ (1000 * 60 * 60))*rate; // find out the hours rented by the user and calculate the fees
+        var fees;
+        if(reservation.endDateTime == null) {
+            fees = ((reservation.startDateTime - enddate) / (1000 * 60 * 60)) * rate; // find out the hours rented by the user and calculate the fees
+        } else {
+            fees = (reservation.startDateTime - reservation.endDateTime) / (1000 * 60 * 60) * rate;
+        }
+        //''this.rental.splice(reservation, 1);
 
         return `Rental ended. Outstanding fees: ${fees}`;
     },
