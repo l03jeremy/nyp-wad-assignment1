@@ -25,7 +25,8 @@ module.exports = {
     user: [
         {
             id: 1,
-            name: "Jack Ingoff",
+            username: "nk",
+            name: "Nill Kiggers",
             age: 20,
             phone: "89347337",
             admin: true,
@@ -59,19 +60,20 @@ module.exports = {
         const id = Math.max(...user.map(u => u.id)) + 1;
         this.user.push({id, name, age, phone});
     },
-    rentCar(d) {
+    rentCar(id) {
         var bookdate = Date.now();
         this.rental.push({customerID, bookdate, endDate, estPrice, paid});
     },
     endRental(i) {
-        const rate = 10;
+        const hourlyrate = 8;
+        const normalrate = 10;
         var enddate = Date.now();
         var reservation = this.rental.find(r => r.id == Number(i));
         var fees;
         if(reservation.endDateTime == null) {
-            fees = Math.round(((enddate - reservation.startDateTime) / (3600000)) * rate * 100) / 100;  // find out the hours rented by the user and calculate the fees
+            fees = Math.round(((enddate - reservation.startDateTime) / (3600000)) * hourlyrate * 100) / 100;  // find out the hours rented by the user and calculate the fees
         } else {
-            fees = (reservation.startDateTime - reservation.endDateTime) / (1000 * 60 * 60) * rate;  // if the user has stated their end perios before, calculate directly
+            fees = (reservation.startDateTime - reservation.endDateTime) / (1000 * 60 * 60) * normalrate;  // if the user has stated their end perios before, calculate directly
         }
         //''this.rental.splice(reservation, 1);
         return `Rental ended. Outstanding fees: ${fees}`;
