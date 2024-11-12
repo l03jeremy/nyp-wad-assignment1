@@ -86,6 +86,10 @@ module.exports = {
         return this.rental.find(r => r.id === i);
     },
     searchCar(detail) {
+        var make;
+        var model;
+        var cap;
+        var seats;
         
     }
 }
