@@ -26,9 +26,9 @@ You can use the `.addCar()` function to add a vehicle. Include the vehicle Make,
 There are 2 functions for this category, to start and end a rental.
     - Starting a rental:
     Use `.rentCar()` to start a rental. You must provide the registration number of the car you are renting, and your user ID, before starting the rental. Use it like this:
-        ```javascript
-            carrental.rentCar("SBA1234A", 2)
-        ```
+    ```javascript
+        carrental.rentCar("SBA1234A", 2)
+    ```
 
 # References
 Provide the references that you have used to support your assignment. 
