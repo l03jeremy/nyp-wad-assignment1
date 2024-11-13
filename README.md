@@ -1,5 +1,7 @@
 # Assignment 1
 
+Assignment 1 Jeremy
+
 ## Car Rental Manager for a Car Rental Company
 This app allows you to manage vehicles, users as well as bookings within the application
 
