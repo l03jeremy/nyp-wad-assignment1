@@ -74,7 +74,7 @@ module.exports = {
         }
         // Generate a 'unique' ID by checking the highest number and adding 1, then inserting it into the array
 
-        const id = Math.max(...user.map(u => u.id)) + 1;
+        const id = Math.max(...this.user.map(u => u.id)) + 1;
         this.user.push({id, username, name, age, phone});
         return `Thank you, ${name}, you have successfully registered.`;
     },
@@ -92,7 +92,7 @@ module.exports = {
 
         // Checks if the startDateTime and endDateTime is a number, and is a valid datetime (it cannot be behind the current datetime)
 
-        if(typeof startDateTime !== "number" || typeof endDateTime !== "number") return "Time must be a number, in unix time format";
+        if((startDateTime !== null && typeof startDateTime !== "number") || (endDateTime !== null && typeof endDateTime !== "number")) return "Time must be a number, in unix time format";
         if((endDateTime !== null && endDateTime < date.getTime()) || (startDateTime !== null && startDateTime < date.getTime())) return `You cannot start or end rental in the past`;
 
         // Checks if there are any records in the users array with the given username

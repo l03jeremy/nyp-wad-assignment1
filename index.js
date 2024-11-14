@@ -22,7 +22,7 @@ console.log(rental.endRental(3));
 
 // Booking a car without providing startDateTime (the rental will start immediately) and/or endDateTime (the rental will be charged at a higher rate)
 
-console.log(rental.rentCar("SFK3390A", 1));
+console.log(rental.rentCar("SFK3390A", "ng"));
 
 // Search for a car with desired requirements
 
@@ -36,5 +36,4 @@ console.log(rental.checkBookings("SGN9320K"));
 
 // Even if the rental is still ongoing, it will still show
 
-console.log(rental.rentCar("SGN9320K", "jk", Date.now(), Date.now() + 7200000));
-console.log(rental.checkBookings("SGN9320K"));
+console.log(rental.checkBookings("SFK3390A")); // This rental is from line 25
