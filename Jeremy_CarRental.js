@@ -161,7 +161,9 @@ module.exports = {
         return cars;
     },
     checkBookings(regno) {
+
         // In case the car is damaged or vandalized, the admin can look through previous bookings to find the culprit.
+        
         var vehicle = this.vehicles.find(v => v.regno == regno);
         if(!vehicle) return `No vehicles found`;
         var reservations = this.rental.filter(r => r.vehicleID == vehicle.regno);

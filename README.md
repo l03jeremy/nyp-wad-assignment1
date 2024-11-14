@@ -17,8 +17,7 @@ This app allows you to manage vehicles, users as well as bookings within the app
 
 # Usage
 
-Full examples are provided in [index.js](https://github.com/{OWNER}/{REPO}/blob/main/index.js). 
-[test](blob/main/index.js)
+Full examples are provided in [index.js](index.js). 
 
 Simply include the package to your project
 ```javascript
@@ -28,22 +27,62 @@ Simply include the package to your project
 
 ### `.addCar(String make, String model, Int seats, Int capacity, String regno)`
 Adds a vehicle to the system. All fields are required
+
+**Parameters**:
+
+* `make` - The manufacturer of the vehicle
+* `model` - The model of the vehicle
+* `seats` - The number of seats in the car
+* `capacity` - The engine capacity of the vehicle
+* `regno` - The registration number of the vehicle
+
+**Returns**:
+
+* Confirmation of adding the car to the system
+
+**Example Usage**:
 ```javascript
     carrental.addCar("Opel", "Astra", 5, 1800, "SBA1234A");
 ```
 
+---
+
 ### `.register(String username, String fullname, Int age, Int phone)`
 Register a user to the system. All fields are required.
+
+**Parameters**:
+
+* `username` - The username of the user
+* `fullname` - The full name of the user
+* `age` - The age of the user
+* `phone` - The phone number of the user
+
+**Returns**:
+
+* Confirmation of adding the user to the system
+
+**Example Usage**:
 ```javascript
     carrental.register("username", "User Name", 20, 91234567);
 ```
 
+---
+
 ### `.rentCar(String regno, Int customerId, Int startDateTime = null, Int endDateTime = null)`
 Start a rental.
+
+**Parameters**:
+
+* `regno` - The registration number of the renting vehicle
+* `customerId` - The ID of the renter
+* `startDateTime` - The start date and time of the rental, in unix time
+* `endDateTime` - The end date and time of the rental, in unix time
 
 **Returns**:
 
 * Booking details
+
+**Example Usage**:
 
 There are multiple ways to rent a car as a user, on demand, or by specifying a time frame. 
 * **On-demand rental**
@@ -68,45 +107,94 @@ There are multiple ways to rent a car as a user, on demand, or by specifying a t
         // Start the rental with only a specified end time (if user wants to enjoy lower rates)
         carrental.rentCar("SBA1234A", 1, null, 1731340800000);
     ```
+
+---
+
 ### `.endRental(Int bookingId)`
 
-## Examples
+Ends the rental. DUH!
 
-### Registering
+**Parameters**:
 
-To start, you can register as a user using the `.register()` function. Include your username, name, age, and phone number in the arguments, as such:
+* `bookingId` - The booking ID of the rental. It is provided in the booking details when the renter rents a car
+
+**Returns**:
+
+* Outstanding fees
+* Confirmation message
+
+**Example Usage**:
 
 ```javascript
-    carrental.register("username", "User Name", 20, 91234567);
+    carrental.endRental(1);
 ```
 
-### Adding a car (for admins)
+---
 
-You can use the `.addCar()` function to add a vehicle. Include the vehicle Make, Model, Seats, Capacity, and its registration number into the function:
+### `.getCustomerDetails(Int userId)`
+
+Retrieves details of a user
+
+**Parameters**:
+
+* `userId` - The ID of the user
+
+**Returns**:
+
+* The details of the user
+
+**Example Usage**:
+
 ```javascript
-    carrental.addCar("Opel", "Astra", 5, 1800, "SBA1234A");
+    carrental.getCustomerDetails(1);
 ```
 
-### Renting
-There are 2 functions for this category, to start and end a rental.
-* Starting a rental:
-  - Basic Usage:
-    - Use `.rentCar()` to start a rental. You must provide the registration number of the car you are renting, and your user ID, before starting the rental. Use it like this:
-        ```javascript
-            carrental.rentCar("SBA1234A", 2);
-        ```
-  - More defined rental (defining start and end DateTime)
-    - You have to provide the unix time as the parameter.
-        ```javascript
-            carrental.rentCar("SBA1234A", 2, 1731249100000, 1731340800000);
-        ```
-        - Defining the start date can be used if the user wants to start the rental at a later date or time. If the start date is left null, the rental starts immediately.
-        - Defining the end date can be used for the user to enjoy lower rental rates, only if they return the car before the rental end date. The function will surcharge the user if they exceed the rental period.
-* Ending a rental:
-  - You basically just have to use the `.endRental()` function with the rental ID. which is shown when you book the car.
-  ```javascript
-      carrental.endRental(3);
-  ```
+---
 
+### `.searchCar({ [params] })`
+
+Searches for a vehicle
+
+**Parameters**:
+
+* `[params]` - The parameters and arguments in the [.addCar()](#addcarstring-make-string-model-int-seats-int-capacity-string-regno) function
+
+**Returns**:
+
+* Vehicles matching search parameters
+
+**Example Usage**:
+
+```javascript
+    // Search car by seat count
+    carrental.searchCar({ seats: 5 });
+
+    // Search car by car make
+    carrental.searchCar({ make: "Opel" });
+
+    // Search car by make AND seat count
+    carrental.searchCar({ make: "Opel", seats: 5 });
+    // etc.
+```
+
+---
+
+### `.checkBookings(String regno)`
+
+**Parameters**:
+
+* `regno` - The registration number of the vehicle
+
+**Returns**:
+
+* All of the bookings made with the vehicle, ongoing or not
+
+**Example Usage**:
+
+```javascript
+    carrental.checkBookings("SBA1234A");
+```
+
+---
 # References
 Provide the references that you have used to support your assignment. 

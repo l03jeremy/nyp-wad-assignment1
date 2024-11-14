@@ -24,6 +24,7 @@ console.log(rental.rentCar("SFK3390A", 1));
 
 console.log(rental.searchCar({seats: 5}));
 console.log(rental.searchCar({make: "Toyota"}));
+console.log(rental.searchCar({make: "Toyota", seats: 5}));
 
 // Check bookings made with a specific car, ongoing or not
 
