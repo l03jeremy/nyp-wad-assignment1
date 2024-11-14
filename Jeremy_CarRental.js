@@ -64,9 +64,15 @@ module.exports = {
         this.vehicles.push({id, make, model, seats, cap, regno});
     },
     register(username, name, age, phone) {
+
+        // Check if all fields are empty
+
         if(!username || !name || !age || !phone) {
             return `All fields required`;
         }
+
+        // Generate a 'unique' ID by checking the highest number and adding 1, then inserting it into the array
+
         const id = Math.max(...user.map(u => u.id)) + 1;
         this.user.push({id, username, name, age, phone});
         return `Thank you, ${name}, you have successfully registered.`;
@@ -140,11 +146,14 @@ module.exports = {
     },
     searchCar(detail) {
         var cars = this.vehicles.filter(v => {
+
+            // Only check the vehicles array based on what is provided in the detail argument.
+
             const matchesMake = detail.make ? v.make.toLowerCase() === detail.make.toLowerCase() : true;
             const matchesModel = detail.model ? v.model.toLowerCase() === detail.model.toLowerCase() : true;
             const matchesCap = detail.cap ? v.cap === detail.cap : true;
             const matchesSeats = detail.seats ? v.seats === detail.seats : true;
-            const matchesRegno = detail.regno ? v.regno.toLowerCase() === detail.regno.toLowerCase() : true; // Only check the vehicles array based on what is provided in the detail argument.
+            const matchesRegno = detail.regno ? v.regno.toLowerCase() === detail.regno.toLowerCase() : true; 
     
             return matchesMake && matchesModel && matchesCap && matchesSeats && matchesRegno;
         });
