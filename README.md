@@ -9,13 +9,13 @@ This app allows you to manage vehicles, users as well as bookings within the app
 
 # Functions
 
-* `.addCar()` - Add a vehicle to the system
-* `.register()` - Register a user to the system
-* `.rentCar()` - Start a rental
-* `.endRental()` - End a rental
-* `.getCustomerDetails()` - Get user details
-* `.searchCar()` - Look for a vehicle
-* `.checkBookings()` - Used to add a vehicle
+* [`.addCar()`](#addcarstring-make-string-model-int-seats-int-capacity-string-regno) - Add a vehicle to the system
+* [`.register()`](#registerstring-username-string-fullname-int-age-int-phone) - Register a user to the system
+* [`.rentCar()`](#rentcarstring-regno-int-customerid-int-startdatetime--null-int-enddatetime--null) - Start a rental
+* [`.endRental()`](#endrentalint-bookingid) - End a rental
+* [`.getCustomerDetails()`](#getcustomerdetailsint-userid) - Get user details
+* [`.searchCar()`](#searchcar-params-) - Look for a vehicle
+* [`.checkBookings()`](#checkbookingsstring-regno) - Used to add a vehicle
 
 # Usage
 
