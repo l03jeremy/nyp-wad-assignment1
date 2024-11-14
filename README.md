@@ -18,7 +18,7 @@ This app allows you to manage vehicles, users as well as bookings within the app
 # Usage
 
 Full examples are provided in [index.js](https://github.com/{OWNER}/{REPO}/blob/main/index.js). 
-[test](/blob/main/index.js)
+[test](blob/main/index.js)
 
 Simply include the package to your project
 ```javascript
