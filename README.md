@@ -28,6 +28,7 @@ Simply include the package to your project
 ## Functions
 
 ### `.addCar(String make, String model, Int seats, Int capacity, String regno)`
+
 Adds a vehicle to the system. All fields are required
 
 **Parameters**:
@@ -50,6 +51,7 @@ Adds a vehicle to the system. All fields are required
 ---
 
 ### `.register(String username, String fullname, Int age, Int phone)`
+
 Register a user to the system. All fields are required.
 
 **Parameters**:
@@ -70,13 +72,14 @@ Register a user to the system. All fields are required.
 
 ---
 
-### `.rentCar(String regno, Int customerId, Int startDateTime = null, Int endDateTime = null)`
+### `.rentCar(String regno, String username, Int startDateTime = null, Int endDateTime = null)`
+
 Start a rental.
 
 **Parameters**:
 
 * `regno` - The registration number of the renting vehicle
-* `customerId` - The ID of the renter
+* `username` - The username of the renter
 * `startDateTime` - The start date and time of the rental, in unix time
 * `endDateTime` - The end date and time of the rental, in unix time
 
@@ -101,13 +104,13 @@ There are multiple ways to rent a car as a user, on demand, or by specifying a t
     You can also use the function to start the rental on a specific date or time.
     ```javascript
         // Start the rental with only a specific start time
-        carrental.rentCar("SBA1234A", 1, 1731249100000);
+        carrental.rentCar("SBA1234A", "username", 1731249100000);
 
         // Start the rental with a specific start time and end time
-        carrental.rentCar("SBA1234A", 1, 1731249100000, 1731340800000);
+        carrental.rentCar("SBA1234A", "username"1, 1731249100000, 1731340800000);
 
         // Start the rental with only a specified end time (if user wants to enjoy lower rates)
-        carrental.rentCar("SBA1234A", 1, null, 1731340800000);
+        carrental.rentCar("SBA1234A", "username", null, 1731340800000);
     ```
 
 ---
@@ -159,7 +162,7 @@ Searches for a vehicle
 
 **Parameters**:
 
-* `[params]` - The parameters and arguments in the [`.addCar()`](#addcarstring-make-string-model-int-seats-int-capacity-string-regno) function. Refer to it for the list of parameters
+* `[params]` - The parameters in the [`.addCar()`](#addcarstring-make-string-model-int-seats-int-capacity-string-regno) function. Refer to it for the list of parameters
 
 **Returns**:
 
@@ -183,6 +186,8 @@ Searches for a vehicle
 
 ### `.checkBookings(String regno)`
 
+Checks all the bookings made with a specific vehicle
+
 **Parameters**:
 
 * `regno` - The registration number of the vehicle
@@ -197,7 +202,6 @@ Searches for a vehicle
     carrental.checkBookings("SBA1234A");
 ```
 
----
 # References
 
 * https://developer.mozilla.org - [Date and time functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)

@@ -77,10 +77,11 @@ module.exports = {
         this.user.push({id, username, name, age, phone});
         return `Thank you, ${name}, you have successfully registered.`;
     },
-    rentCar(regno, customerID, startDateTime = null, endDateTime = null) {
-        if(!customerID || !regno) return `Customer ID and car register number is required.`;
+    rentCar(regno, username, startDateTime = null, endDateTime = null) {
+        if(!username || !regno) return `Username and car register number is required.`;
         var vehicleID = this.vehicles.find(v => v.regno == regno)?.id;
         if(!vehicleID) return `No vehicles found matching '${regno}'`;
+        if(!this.user.find(u => u.username == username)) return `No user with the username ${username} is found`;
 
         const id = Math.max(...this.rental.map(r => r.id)) + 1;
         var date = new Date();
@@ -91,7 +92,7 @@ module.exports = {
             
             this.rental.push({
                 id, 
-                customerID, 
+                customerID: username, 
                 startDateTime: bookdate, 
                 endDateTime, 
                 vehicleID: regno, 
@@ -100,7 +101,7 @@ module.exports = {
             return `Vehicle rental started. Your car is ${cardetail.regno}. \n
             Booking details: \n
             Booking ID: ${id}, \n
-            User: ${this.user.find(u => u.id == customerID).name}, \n
+            User: ${this.user.find(u => u.username == username).name}, \n
             Car: ${cardetail.regno}, \n
             Start Time: ${date.toLocaleString()}, \n
             ${endDateTime ? `End Time: ${new Date(endDateTime).toLocaleString()}, \n` : "No end time provided, you are being charged the normal rate."}\n`;
@@ -110,6 +111,7 @@ module.exports = {
     },
     endRental(i) {
         var reservation = this.rental.find(r => r.id == Number(i));
+        if(!reservation) return `No reservations found with booking ID ${i}`;
         var enddate = new Date().getTime();
 
         const hourlyrate = 8;
@@ -132,17 +134,14 @@ module.exports = {
     },
     getCustomerDetails(i) {
         var userdetails = user.find(c => c.id === i);
-        if(userdetails == null) {
-            return `No such user found`; // No user is found with the following id
-        } else {
-            return `
-                ID: ${userdetails.id} \n,
-                Username: ${userdetails.username} \n,
-                Name: ${userdetails.name} \n,
-                Age: ${userdetails.age} \n,
-                Phone: ${userdetails.phone}
-            `;
-        }
+        if(userdetails == null) return `No such user found`; // No user is found with the following id
+        return `
+            ID: ${userdetails.id} \n,
+            Username: ${userdetails.username} \n,
+            Name: ${userdetails.name} \n,
+            Age: ${userdetails.age} \n,
+            Phone: ${userdetails.phone}
+        `;
     },
     searchCar(detail) {
         var cars = this.vehicles.filter(v => {

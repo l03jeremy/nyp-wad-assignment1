@@ -6,11 +6,11 @@ rental.addCar("Honda", "N-Box", 5, 660, "SGN9320K");
 
 // Start a rental
 
-console.log(rental.rentCar("SGN9320K", 1, Date.now(), Date.now() + 7200000)); // The endDateTime is set 2 hours from now
+console.log(rental.rentCar("SGN9320K", "ng", Date.now(), Date.now() + 7200000)); // The endDateTime is set 2 hours from now
 
 // When a user tries to book a car that is still rented under another user.
 
-console.log(rental.rentCar("SGN9320K", 2, Date.now(), Date.now() + 7200000));
+console.log(rental.rentCar("SGN9320K", "jk", Date.now(), Date.now() + 7200000));
 
 // End the rental
 
@@ -28,4 +28,9 @@ console.log(rental.searchCar({make: "Toyota", seats: 5}));
 
 // Check bookings made with a specific car, ongoing or not
 
+console.log(rental.checkBookings("SGN9320K"));
+
+// Even if the rental is still ongoing, it will still show
+
+console.log(rental.rentCar("SGN9320K", "jk", Date.now(), Date.now() + 7200000));
 console.log(rental.checkBookings("SGN9320K"));
