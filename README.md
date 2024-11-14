@@ -2,6 +2,8 @@
 
 Assignment 1 Jeremy
 
+### About
+
 **Car Rental Manager for a Car Rental Company** \
 This app allows you to manage vehicles, users as well as bookings within the application
 
@@ -112,7 +114,7 @@ There are multiple ways to rent a car as a user, on demand, or by specifying a t
 
 ### `.endRental(Int bookingId)`
 
-Ends the rental. DUH!
+Ends the rental.
 
 **Parameters**:
 
@@ -157,7 +159,7 @@ Searches for a vehicle
 
 **Parameters**:
 
-* `[params]` - The parameters and arguments in the [.addCar()](#addcarstring-make-string-model-int-seats-int-capacity-string-regno) function
+* `[params]` - The parameters and arguments in the [`.addCar()`](#addcarstring-make-string-model-int-seats-int-capacity-string-regno) function. Refer to it for the list of parameters
 
 **Returns**:
 
@@ -197,4 +199,7 @@ Searches for a vehicle
 
 ---
 # References
-Provide the references that you have used to support your assignment. 
+
+* https://developer.mozilla.org - [Date and time functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+
+* [Epoch converter](https://www.epochconverter.com/) - For calculating the current time and comparing Date() times in milliseconds.
