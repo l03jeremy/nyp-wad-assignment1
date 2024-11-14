@@ -72,6 +72,10 @@ module.exports = {
         } else if(typeof age !== "number" || typeof phone !== "number") { // If user anything thats not a number
             return `Age, phone must be a number`;
         }
+
+        // The user name must be unique
+
+        if(this.user.find(u => u.username == username)) return `Username is taken`;
         // Generate a 'unique' ID by checking the highest number and adding 1, then inserting it into the array
 
         const id = Math.max(...this.user.map(u => u.id)) + 1;
