@@ -133,7 +133,7 @@ module.exports = {
         return `Your rental has ended. Outstanding fees: ${fees}`;
     },
     getCustomerDetails(i) {
-        var userdetails = user.find(c => c.id === i);
+        var userdetails = this.user.find(u => u.username === i);
         if(userdetails == null) return `No such user found`; // No user is found with the following id
         return `
             ID: ${userdetails.id} \n,

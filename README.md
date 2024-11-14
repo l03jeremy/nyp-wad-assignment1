@@ -107,7 +107,7 @@ There are multiple ways to rent a car as a user, on demand, or by specifying a t
         carrental.rentCar("SBA1234A", "username", 1731249100000);
 
         // Start the rental with a specific start time and end time
-        carrental.rentCar("SBA1234A", "username"1, 1731249100000, 1731340800000);
+        carrental.rentCar("SBA1234A", "username", 1731249100000, 1731340800000);
 
         // Start the rental with only a specified end time (if user wants to enjoy lower rates)
         carrental.rentCar("SBA1234A", "username", null, 1731340800000);

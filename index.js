@@ -4,6 +4,10 @@ const rental = require('./Jeremy_CarRental.js');
 
 rental.addCar("Honda", "N-Box", 5, 660, "SGN9320K");
 
+// Register a user
+
+rental.register("username", "User Name", 25, 81234567);
+
 // Start a rental
 
 console.log(rental.rentCar("SGN9320K", "ng", Date.now(), Date.now() + 7200000)); // The endDateTime is set 2 hours from now
