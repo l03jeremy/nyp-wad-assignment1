@@ -136,13 +136,13 @@ Ends the rental.
 
 ---
 
-### `.getCustomerDetails(Int userId)`
+### `.getCustomerDetails(String username)`
 
 Retrieves details of a user
 
 **Parameters**:
 
-* `userId` - The ID of the user
+* `username` - The username of the user
 
 **Returns**:
 
@@ -151,7 +151,7 @@ Retrieves details of a user
 **Example Usage**:
 
 ```javascript
-    carrental.getCustomerDetails(1);
+    carrental.getCustomerDetails("username");
 ```
 
 ---
